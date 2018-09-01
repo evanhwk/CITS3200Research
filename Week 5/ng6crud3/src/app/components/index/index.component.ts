@@ -1,4 +1,8 @@
+// index.component.ts
+
 import { Component, OnInit } from '@angular/core';
+import { AdUnit } from './AdUnit';
+import { AdunitService } from '../../adunit.service';
 
 @Component({
   selector: 'app-index',
@@ -7,9 +11,20 @@ import { Component, OnInit } from '@angular/core';
 })
 export class IndexComponent implements OnInit {
 
-  constructor() { }
+  adunits: AdUnit[];
+
+  constructor(private adunitservice: AdunitService) { }
 
   ngOnInit() {
+    this.adunitservice
+      .getAdUnits()
+      .subscribe((data: AdUnit[]) => {
+      this.adunits = data;
+    });
   }
-
+  deleteAdUnit(id) {
+    this.adunitservice.deleteAdUnit(id).subscribe(res => {
+      console.log('Deleted');
+    });
+  }
 }

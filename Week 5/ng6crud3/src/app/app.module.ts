@@ -12,6 +12,8 @@ import { HttpClientModule } from '@angular/common/http';
 
 import { AdunitService } from './adunit.service';
 
+import { ReactiveFormsModule } from '@angular/forms';
+
 const routes: Routes = [
   {
     path: 'create',
@@ -38,7 +40,8 @@ const routes: Routes = [
     BrowserModule,
     RouterModule.forRoot(routes),
     SlimLoadingBarModule,
-    HttpClientModule
+    HttpClientModule,
+    ReactiveFormsModule
   ],
   providers: [ AdunitService ],
   bootstrap: [AppComponent]
